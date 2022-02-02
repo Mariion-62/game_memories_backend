@@ -9,18 +9,9 @@ app.use(express.json());
 
 app.get('/cards', async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT * FROM cards');
+    const [rows] = await db.query('SELECT * FROM cards ORDER BY RAND()');
 
     res.status(200).json(rows);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-app.get('/toto', async (req, res) => {
-  try {
-    const [rows] = await db.query('SELECT id FROM cards');
-    res.status(200).send(rows);
   } catch (err) {
     res.status(400).send(err);
   }
